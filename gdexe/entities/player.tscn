@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://x8hk34kr0c5b"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_4utw3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltgn3"]
+height = 1.81
+
+[node name="Player" type="RigidBody3D"]
+lock_rotation = true
+continuous_cd = true
+script = ExtResource("1_4utw3")
+
+[node name="ColCapsule" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.905, 0)
+shape = SubResource("CapsuleShape3D_ltgn3")
+
+[node name="FPCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60189, 0)
+
+[node name="Raycast" type="RayCast3D" parent="FPCam"]
