@@ -30,7 +30,9 @@ func _process(delta: float) -> void:
 				movement_speed = walk_speed
 				movement_accel_factor = walk_accel_factor
 			var mvmtDir = Vector3(_input.movementInput.x,0.0 ,  _input.movementInput.y)
-			var vDelta = movement_speed - (self.linear_velocity * mvmtDir).length() #TODO: Fix movement being sluggish when reversing direction. 
+			print("mvmtDir * movement_speed ", (mvmtDir * movement_speed), "v: ", self.linear_velocity)
+			var vDelta = (mvmtDir * movement_speed - self.linear_velocity).length() #TODO: Fix movement being sluggish when reversing direction.
+			#TODO: add graphing stuff 
 			if(vDelta < 0.0):
 				vDelta = 0.0
 			print("vDelta: ", vDelta, " movInp: ", _input.movementInput, " v: ", self.linear_velocity)
