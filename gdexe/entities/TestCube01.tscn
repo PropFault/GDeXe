@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://sx287kmvvfm7"]
+
+[ext_resource type="Material" uid="uid://l4dyxcuf32k3" path="res://material/debug01.tres" id="1_cw3eo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rqxsi"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qyhf2"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="TestCube01" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rqxsi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_cw3eo")
+mesh = SubResource("BoxMesh_qyhf2")

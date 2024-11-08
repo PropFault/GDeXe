@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://x8hk34kr0c5b"]
+[gd_scene load_steps=5 format=3 uid="uid://x8hk34kr0c5b"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_4utw3"]
+[ext_resource type="Script" path="res://scripts/player/fp_cam.gd" id="2_46836"]
+[ext_resource type="Script" path="res://scripts/player/player_input.gd" id="3_pq8n5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltgn3"]
 height = 1.81
@@ -11,15 +13,21 @@ lock_rotation = true
 continuous_cd = true
 script = ExtResource("1_4utw3")
 
+[node name="ForwardRef" type="Node3D" parent="."]
+
+[node name="FPCam" type="Camera3D" parent="ForwardRef"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.60189, 0)
+script = ExtResource("2_46836")
+
+[node name="Raycast" type="RayCast3D" parent="ForwardRef/FPCam"]
+
 [node name="ColCapsule" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.905, 0)
 shape = SubResource("CapsuleShape3D_ltgn3")
 
-[node name="FPCam" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.60189, 0)
-
-[node name="Raycast" type="RayCast3D" parent="FPCam"]
-
 [node name="DownCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -1.5, 0)
+
+[node name="PlayerInput" type="Node" parent="."]
+script = ExtResource("3_pq8n5")
