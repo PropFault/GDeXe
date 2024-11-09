@@ -9,6 +9,7 @@ extends RigidBody3D
 @export var is_running_default_state = true
 @onready var _downcast = $DownCast
 @onready var jump_impulse = 20000
+
 var can_jump = true
 @onready var _input = $PlayerInput
 @onready var _forward = $ForwardRef

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://sx287kmvvfm7"]
+[gd_scene load_steps=5 format=3 uid="uid://sx287kmvvfm7"]
 
 [ext_resource type="Material" uid="uid://l4dyxcuf32k3" path="res://material/debug01.tres" id="1_cw3eo"]
+[ext_resource type="Script" path="res://scripts/GrabableRigidBody3D.gd" id="1_yi6xq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rqxsi"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -9,6 +10,7 @@ size = Vector3(0.5, 0.5, 0.5)
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="TestCube01" type="RigidBody3D"]
+script = ExtResource("1_yi6xq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_rqxsi")

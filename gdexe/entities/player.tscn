@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://x8hk34kr0c5b"]
+[gd_scene load_steps=6 format=3 uid="uid://x8hk34kr0c5b"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_4utw3"]
 [ext_resource type="Script" path="res://scripts/player/fp_cam.gd" id="2_46836"]
+[ext_resource type="Script" path="res://scripts/player/interactor.gd" id="3_76a38"]
 [ext_resource type="Script" path="res://scripts/player/player_input.gd" id="3_pq8n5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltgn3"]
@@ -19,7 +20,14 @@ script = ExtResource("1_4utw3")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.60189, 0)
 script = ExtResource("2_46836")
 
-[node name="Raycast" type="RayCast3D" parent="ForwardRef/FPCam"]
+[node name="Interactor" type="RayCast3D" parent="ForwardRef/FPCam" node_paths=PackedStringArray("input")]
+transform = Transform3D(1, -8.74228e-08, 8.74228e-08, 8.74228e-08, -4.37114e-08, -1, 8.74228e-08, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -2.5, 0)
+script = ExtResource("3_76a38")
+input = NodePath("../../../PlayerInput")
+
+[node name="FloatTarget" type="Node3D" parent="ForwardRef/FPCam/Interactor"]
+transform = Transform3D(1, 0, -1.67037e-22, 0, 1, 0, 0, 0, 1, -1.42109e-14, -2.49976, 1.19209e-07)
 
 [node name="ColCapsule" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.905, 0)

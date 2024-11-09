@@ -26,7 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.858621, 0)
 [node name="TestCube01" parent="." instance=ExtResource("2_sibfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10415, 1.61739, 0)
 mass = 10.0
-continuous_cd = true
+can_sleep = false
 
 [node name="TestCube02" parent="." instance=ExtResource("2_sibfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10415, 1.61739, 1.07426)
