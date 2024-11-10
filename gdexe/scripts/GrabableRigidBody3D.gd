@@ -4,24 +4,19 @@ var target_point: Node3D = null
 var max_grab_distance_sqr = 5.0
 var max_grab_force = 200000
 var grab_speed = 1.0
-func on_grab(target_point, max_grab_force, max_grab_distance_sqr, grab_speed):
-	self.target_point = target_point
-	self.max_grab_distance_sqr = max_grab_distance_sqr
-	self.max_grab_force = max_grab_force
-	self.grab_speed = grab_speed
+signal on_released(this)
+func on_grab(_target_point, _max_grab_force, _max_grab_distance_sqr, _grab_speed):
+	self.target_point = _target_point
+	self.max_grab_distance_sqr = _max_grab_distance_sqr
+	self.max_grab_force = _max_grab_force
+	self.grab_speed = _grab_speed
 	self.sleeping = false
 
 func on_release():
 	self.target_point = null
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+	on_released.emit(self)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if target_point != null:

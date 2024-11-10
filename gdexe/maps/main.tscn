@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://co72kscq6cf7p"]
+[gd_scene load_steps=6 format=3 uid="uid://co72kscq6cf7p"]
 
 [ext_resource type="PackedScene" uid="uid://x8hk34kr0c5b" path="res://entities/player.tscn" id="2_qaxk4"]
 [ext_resource type="PackedScene" uid="uid://sx287kmvvfm7" path="res://entities/TestCube01.tscn" id="2_sibfy"]
+[ext_resource type="PackedScene" uid="uid://dac66r3ep21dt" path="res://entities/TestCube02.tscn" id="3_m8lww"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5woa6"]
 size = Vector3(1000, 1, 1000)
@@ -39,6 +40,41 @@ mass = 10.0
 can_sleep = false
 
 [node name="TestCube04" parent="." instance=ExtResource("2_sibfy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10415, 2.36345, -0.742644)
+mass = 10.0
+can_sleep = false
+
+[node name="TestCube07" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91497, 1.35433, 2.22303)
+
+[node name="TestCube06" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64633, 1.78312, 2.08337)
+
+[node name="TestCube08" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91497, 1.35433, 2.51887)
+
+[node name="TestCube09" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64633, 1.78312, 2.37921)
+
+[node name="TestCube10" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91497, 1.35433, 2.97563)
+
+[node name="TestCube11" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64633, 1.78312, 2.83597)
+
+[node name="TestCube12" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91497, 1.35433, 3.2659)
+
+[node name="TestCube13" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64633, 1.78312, 3.12624)
+
+[node name="TestCube14" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91497, 1.35433, 3.56058)
+
+[node name="TestCube15" parent="." instance=ExtResource("3_m8lww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64633, 1.78312, 3.42092)
+
+[node name="TestCube05" parent="." instance=ExtResource("2_sibfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10415, 2.36345, -0.742644)
 mass = 10.0
 can_sleep = false

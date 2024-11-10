@@ -24,7 +24,7 @@ func update():
 	primary_just_pressed = _primary_just_pressed
 	primary = Input.is_action_pressed("primary")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_mouseLook = (curPos - _lastPos) * mouseSensitivity / 10.0
 	_mouseLook.x = -_mouseLook.x
 	_lastPos = curPos

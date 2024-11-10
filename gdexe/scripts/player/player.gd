@@ -16,7 +16,7 @@ var can_jump = true
 func is_on_ground():
 	return _downcast.is_colliding()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(input_enabled):
 		_input.update()
 		if(_input.movementModeButton):
