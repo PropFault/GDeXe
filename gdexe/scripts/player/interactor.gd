@@ -4,14 +4,14 @@ extends RayCast3D
 @export var max_force = 100
 @export var attract_time = 0.1
 @export var max_dist_sqr = 10.0
-@export var throw_impulse = 50
+@export var throw_impulse = 10
 @onready var float_target: Area3D = $FloatTarget
 @onready var float_target_col_shape: SphereShape3D = $FloatTarget/CollisionShape3D.shape
 @onready var float_target_original_pos = float_target.transform.origin
-@export var float_target_rad_margin_fact = 1.1
+@export var float_target_rad_margin_fact = 0.5
 var float_target_pullback = 0.0
-var grabbed_objects: Array[GrabableRigidBody3D] = []
-
+var grabbed_objects = []
+@onready var dir_tester: Area3D = $"FloatTarget/DirTester"
 func _physics_process(_delta: float) -> void:
 	var contains = false
 	for body in float_target.get_overlapping_bodies():
@@ -19,9 +19,10 @@ func _physics_process(_delta: float) -> void:
 			contains = true
 	if contains:
 		#TODO: Pull into correct direction
-		float_target_pullback += 0.1
-	elif float_target_pullback > 0.0:
-		float_target_pullback -= 0.1
+		if not dir_tester.has_overlapping_bodies():
+			float_target_pullback += 2.0 * _delta
+	elif abs(float_target_pullback) > 0.0:
+		float_target_pullback -= sign(float_target_pullback) * 2.0 * _delta
 	
 	float_target.transform.origin.y = float_target_original_pos.y + float_target_pullback
 	
@@ -36,13 +37,17 @@ func _physics_process(_delta: float) -> void:
 				shape_aabb = shape_aabb * body.transform
 				shape_aabb.position = float_target.global_position - body.global_position
 				aabb = aabb.merge(shape_aabb)
-				print(shape_aabb.position)
-	float_target_col_shape.radius = max(0.1, aabb.get_longest_axis_size()/2.0) * float_target_rad_margin_fact
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	var rad =  max(0.1, aabb.get_longest_axis_size()/2.0) * float_target_rad_margin_fact
+	float_target_col_shape.radius = rad
+	dir_tester.position.y = rad * 2.0
+	# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_released(obj):
 	grabbed_objects.erase(obj)
 func _process(_delta: float) -> void:
 	input.update()
+	if input.rotateButton:
+		float_target.transform = float_target.transform.rotated_local(Vector3(1.0, 0.0, 0.0), input.lookInput.x * _delta)
+		float_target.transform = float_target.transform.rotated_local(Vector3(0.0, 0.0, 1.0), input.lookInput.y * _delta)
 	if input.interactButton:
 		if self.is_colliding():
 			var collider = self.get_collider()

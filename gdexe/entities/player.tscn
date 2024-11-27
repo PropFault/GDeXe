@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://scripts/player/fp_cam.gd" id="2_46836"]
 [ext_resource type="Script" path="res://scripts/player/interactor.gd" id="3_76a38"]
 [ext_resource type="Script" path="res://scripts/player/player_input.gd" id="3_pq8n5"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_w4asc"]
+[ext_resource type="Shape3D" uid="uid://bqugopsmpwvf8" path="res://shapes/float_target_col_shape.tres" id="4_58lg2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltgn3"]
 height = 1.81
 
 [node name="Player" type="RigidBody3D"]
+collision_layer = 2
 mass = 75.0
 lock_rotation = true
 continuous_cd = true
@@ -34,7 +34,13 @@ transform = Transform3D(1, 0, -1.67037e-22, 0, 1, 0, 0, 0, 1, -1.42109e-14, -2.4
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ForwardRef/FPCam/Interactor/FloatTarget"]
-shape = SubResource("SphereShape3D_w4asc")
+shape = ExtResource("4_58lg2")
+
+[node name="DirTester" type="Area3D" parent="ForwardRef/FPCam/Interactor/FloatTarget"]
+transform = Transform3D(1, 0, -1.67038e-22, 0, 1, 0, 0, 0, 1, 2.84217e-14, 1.00541, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ForwardRef/FPCam/Interactor/FloatTarget/DirTester"]
+shape = ExtResource("4_58lg2")
 
 [node name="ColCapsule" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.905, 0)

@@ -11,6 +11,7 @@ var mouseSensitivity = 1.0
 var primary = false
 var primary_just_pressed = false
 var _primary_just_pressed = false
+var rotateButton = false
 @onready var curPos = get_viewport().get_mouse_position()
 @onready var _lastPos = get_viewport().get_mouse_position()
 
@@ -23,6 +24,7 @@ func update():
 	interactButton = _interactButtonJustPressed
 	primary_just_pressed = _primary_just_pressed
 	primary = Input.is_action_pressed("primary")
+	rotateButton = Input.is_action_pressed("rotate")
 
 func _process(_delta: float) -> void:
 	_mouseLook = (curPos - _lastPos) * mouseSensitivity / 10.0
