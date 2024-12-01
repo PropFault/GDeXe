@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://co72kscq6cf7p"]
+[gd_scene load_steps=7 format=3 uid="uid://co72kscq6cf7p"]
 
 [ext_resource type="PackedScene" uid="uid://x8hk34kr0c5b" path="res://entities/player.tscn" id="2_qaxk4"]
 [ext_resource type="PackedScene" uid="uid://sx287kmvvfm7" path="res://entities/TestCube01.tscn" id="2_sibfy"]
 [ext_resource type="PackedScene" uid="uid://dac66r3ep21dt" path="res://entities/TestCube02.tscn" id="3_m8lww"]
+[ext_resource type="PackedScene" uid="uid://bj6w27qvnrxx7" path="res://entities/arcade/arcade.tscn" id="4_5jgdx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5woa6"]
 size = Vector3(1000, 1, 1000)
@@ -78,3 +79,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64633, 1.78312, 3.42092)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10415, 2.36345, -0.742644)
 mass = 10.0
 can_sleep = false
+
+[node name="Arcade" parent="." instance=ExtResource("4_5jgdx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.588262, 0.5, -2.65845)

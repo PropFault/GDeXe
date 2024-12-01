@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dre4sbkwu8xsq"]
+
+[ext_resource type="Texture2D" uid="uid://hfksds1o4tem" path="res://textures/debug01/debug.png" id="1_dqjr3"]
+
+[node name="SubViewport" type="SubViewport"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(169, 70.5)
+scale = Vector2(11.5625, 5.40625)
+texture = ExtResource("1_dqjr3")
+
+[node name="Camera2D" type="Camera2D" parent="."]

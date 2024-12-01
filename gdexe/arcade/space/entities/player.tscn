@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://g8ocr8vweh0f"]
+
+[ext_resource type="Script" path="res://arcade/space/scripts/ship.gd" id="1_3gu4w"]
+
+[node name="Player" type="RigidBody2D"]
+script = ExtResource("1_3gu4w")

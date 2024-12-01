@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj6w27qvnrxx7"]
+
+[ext_resource type="Script" path="res://scripts/arcade/arcade.gd" id="1_hmfnn"]
+[ext_resource type="PackedScene" uid="uid://cgj08p44ih0em" path="res://models/arcade.glb" id="2_4itns"]
+[ext_resource type="PackedScene" uid="uid://dre4sbkwu8xsq" path="res://maps/arcade_tester.tscn" id="2_70v1s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7nvg"]
+emission_enabled = true
+emission = Color(0.641934, 0.641934, 0.641934, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pni74"]
+size = Vector3(0.973877, 1.99561, 1.02681)
+
+[node name="Arcade" type="RigidBody3D"]
+script = ExtResource("1_hmfnn")
+base_screen_material = SubResource("StandardMaterial3D_v7nvg")
+scene_to_display = ExtResource("2_70v1s")
+
+[node name="arcade" parent="." instance=ExtResource("2_4itns")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0616455, 1.08325, -0.00235748)
+shape = SubResource("BoxShape3D_pni74")

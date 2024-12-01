@@ -1,6 +1,5 @@
 extends RayCast3D
 @export var player_body: RigidBody3D
-@export var input : PlayerInput
 @export var max_force = 100
 @export var attract_time = 0.1
 @export var max_dist_sqr = 10.0
@@ -44,29 +43,31 @@ func _physics_process(_delta: float) -> void:
 func _on_released(obj):
 	grabbed_objects.erase(obj)
 func _process(_delta: float) -> void:
-	input.update()
-	if input.rotateButton:
-		float_target.transform = float_target.transform.rotated_local(Vector3(1.0, 0.0, 0.0), input.lookInput.x * _delta)
-		float_target.transform = float_target.transform.rotated_local(Vector3(0.0, 0.0, 1.0), input.lookInput.y * _delta)
-	if input.interactButton:
-		if self.is_colliding():
-			var collider = self.get_collider()
-			
-			if grabbed_objects.has(collider):
-				collider.on_release()
-				grabbed_objects.erase(collider)
-			elif collider.has_method("on_grab"):
-				var grabbable = collider as GrabableRigidBody3D
-				collider.on_grab(float_target, max_force, max_dist_sqr, attract_time)
-				grabbed_objects.push_back(collider)
-				grabbable.on_released.connect(_on_released)
-		else:
+	var input = PlayerInput.get_shared()
+	if input != null:
+		if input.rotateButton:
+			float_target.transform = float_target.transform.rotated_local(Vector3(1.0, 0.0, 0.0), input.lookInput.x * _delta)
+			float_target.transform = float_target.transform.rotated_local(Vector3(0.0, 0.0, 1.0), input.lookInput.y * _delta)
+		if input.interactButton:
+			if self.is_colliding():
+				var collider = self.get_collider()
+				if collider.has_method("on_interact"):
+					collider.on_interact()
+				if grabbed_objects.has(collider):
+					collider.on_release()
+					grabbed_objects.erase(collider)
+				elif collider.has_method("on_grab"):
+					var grabbable = collider as GrabableRigidBody3D
+					collider.on_grab(float_target, max_force, max_dist_sqr, attract_time)
+					grabbed_objects.push_back(collider)
+					grabbable.on_released.connect(_on_released)
+			else:
+				for obj in grabbed_objects:
+					obj.on_release()
+				grabbed_objects.clear()
+
+		if input.primary_just_pressed:
 			for obj in grabbed_objects:
 				obj.on_release()
+				obj.apply_impulse(-self.global_transform.basis.y * throw_impulse)
 			grabbed_objects.clear()
-
-	if input.primary_just_pressed:
-		for obj in grabbed_objects:
-			obj.on_release()
-			obj.apply_impulse(-self.global_transform.basis.y * throw_impulse)
-		grabbed_objects.clear()
